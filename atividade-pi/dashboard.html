@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="pt">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Dashboard</title>
+
+  <link rel="stylesheet" href="style.css" />
+
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  
+</head>
+
+<body>
+  <div class="header">
+    <div class="container">
+      <h1>ANALISE <span class="highlight">COMPARATIVA</span> DE SALARIOS NO BRASIL</h1>
+    </div>
+  </div>
+
+  <div class="dash-container">
+
+    <!-- Gráfico de Linhas -->
+    <div class="graph">
+      <canvas id="chartLine" style="width: 100%; height: 100%;"></canvas>
+    </div>
+
+    <!-- Gráfico de Barras -->
+    <div class="graph">
+      <canvas id="chartBar" style="width: 100%; height: 100%;"></canvas>
+    </div>
+
+    <!-- Grafico Pizza/Torta -->
+    <div class="graph">
+      <canvas id="chartPie" style="width: 100%; height: 100%;"></canvas>
+    </div>
+  </div>
+</body>
+
+</html>
+
+<script>
+  var ctxLine = document.getElementById("chartLine").getContext("2d");
+  var rotulosLine = ["2011", "2012", "2013", "2014", "2015", "2016", "2017", "2018", "2019", "2020", "2021"];
+  var dataLine = [540.00, 622.00, 678.00, 724.00, 788.00, 880.00, 937.00, 954.00, 998.00, 1045.00, 1100.00];
+  var configLine = {
+    type: 'line',
+    data: {
+      labels: rotulosLine,
+      datasets: [
+        {
+          label: 'Salário Mínimo',
+          data: dataLine,
+          backgroundColor: [
+            '#FF000022'
+          ],
+          borderColor: [
+            '#FF0000'
+          ],
+          borderWidth: 2
+        }
+      ]
+    },
+    options: {
+      maintainAspectRatio: false,
+      scales: {
+        y: {
+          beginAtZero: true,
+        }
+      }
+    }
+  }
+  var ax_chartLine = new Chart(ctxLine, configLine);
+
+
+  var ctxBar = document.getElementById("chartBar").getContext("2d");
+  var rotulosBar = ["Brasil(Total)", "Norte", "Nordeste", "Sudeste", "Sul", "Centro-Oeste"];
+  var dataBar = [11, 10.6, 13.6, 11.4, 6.8, 9.3];
+  var configBar = {
+    type: 'bar',
+    data: {
+      labels: rotulosBar,
+      datasets: [
+        {
+          label: 'Desemprego por Região',
+          data: dataBar,
+          backgroundColor: [
+            '#FF000022',
+            '#22C01C22',
+            '#22C01C22',
+            '#22C01C22',
+            '#22C01C22',
+            '#22C01C22'
+            
+          ],
+          borderColor: [
+            '#FF0000',
+            '#11610F',
+            '#11610F',
+            '#11610F',
+            '#11610F',
+            '#11610F'
+          ],
+          borderWidth: 2
+        }
+      ]
+    },
+    options: {
+      maintainAspectRatio: false,
+      scales: {
+        y: {
+          beginAtZero: true,
+        }
+      }
+    }
+  }
+  var ax_chartBar = new Chart(ctxBar, configBar);
+
+
+  var ctxPie = document.getElementById("chartPie").getContext("2d");
+  var rotulosPie = ["MÉDIA DE SALARIO POR REGIÃO", "Norte", "Nordeste", "Sudeste", "Sul", "Centro-Oeste"];
+  var dataPie = [, 1711.00, 1539.00, 2585.00, 2499.00, 2498.00];
+  var configPie = {
+    type: 'pie',
+    data: {
+      labels: rotulosPie,
+      datasets: [
+        {
+          label: 'MÉDIA DE SALARIO POR REGIÃO',
+          data: dataPie,
+          backgroundColor: [
+            '#FF000022',
+            '#FFFF0022',
+            '#FF00FF22',
+            '#00FFFF22',
+            '#99009922',
+            '#99990022',
+            '#F0F00022',
+            '#65002222',
+          ],
+          borderColor: [
+            '#FF0000',
+            '#FFFF00',
+            '#FF00FF',
+            '#00FFFF',
+            '#990099',
+            '#999900',
+            '#F0F000',
+            '#650022',
+          ],
+          borderWidth: 2
+        }
+      ]
+    },
+    options: {
+      maintainAspectRatio: false,
+      scales: {
+        y: {
+          beginAtZero: true,
+        }
+      }
+    }
+  }
+  var ax_chartPie = new Chart(ctxPie, configPie);
+
+</script>
